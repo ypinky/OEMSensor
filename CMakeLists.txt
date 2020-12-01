@@ -72,11 +72,11 @@ if (NOT YOCTO)
                          ${CMAKE_BINARY_DIR}/sdbusplus-src BINARY_DIR
                          ${CMAKE_BINARY_DIR}/sdbusplus-build CONFIGURE_COMMAND
                          "" BUILD_COMMAND cd ${CMAKE_BINARY_DIR}/sdbusplus-src
-                         && ./bootstrap.sh && ./configure --enable-transaction
-                         && make -j libsdbusplus.la INSTALL_COMMAND ""
+                         && meson build -Ddefault_library=static && ninja -C
+                         build libsdbusplus.a INSTALL_COMMAND ""
                          LOG_DOWNLOAD ON)
     include_directories (SYSTEM ${CMAKE_BINARY_DIR}/sdbusplus-src)
-    link_directories (${CMAKE_BINARY_DIR}/sdbusplus-src/.libs)
+    link_directories (${CMAKE_BINARY_DIR}/sdbusplus-src/build)
 endif ()
 
 add_definitions (-DBOOST_ERROR_CODE_HEADER_ONLY)
