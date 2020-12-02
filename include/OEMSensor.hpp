@@ -7,6 +7,8 @@
 #include <fstream>
 #include <sdbusplus/asio/object_server.hpp>
 #include <string>
+#include <boost/timer.hpp>
+#include <boost/asio.hpp>
 
 struct OEMInfo
 {
